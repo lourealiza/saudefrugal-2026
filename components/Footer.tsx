@@ -6,8 +6,8 @@ const cols = [
     title: "Conteúdo",
     links: [
       { label: "Cursos online", href: "/cursos" },
-      { label: "Retiros", href: "/#retiro" },
-      { label: "Livros", href: "/#loja" },
+      { label: "Retiros", href: "/retiros" },
+      { label: "Livros", href: "/loja" },
       { label: "Blog", href: "#" },
       { label: "YouTube", href: "https://www.youtube.com/@saudefrugal" },
     ],
@@ -17,7 +17,7 @@ const cols = [
     links: [
       { label: "Sobre o Dr. Corassa", href: "/sobre" },
       { label: "Palestras", href: "#" },
-      { label: "Loja virtual", href: "/#loja" },
+      { label: "Loja virtual", href: "/loja" },
       { label: "Contato", href: "/#contato" },
     ],
   },

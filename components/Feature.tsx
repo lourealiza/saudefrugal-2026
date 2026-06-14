@@ -1,4 +1,5 @@
 import { Arrow, Check } from "./icons";
+import { withBase } from "@/lib/base";
 
 const items = [
   "Duas aulas culinárias diárias com degustação",
@@ -40,8 +41,8 @@ export default function Feature() {
             ))}
           </ul>
 
-          <a href="#contato" className="btn btn--primary">
-            Inscrever no próximo retiro <Arrow className="arrow" />
+          <a href={withBase("/retiros")} className="btn btn--primary">
+            Ver os retiros <Arrow className="arrow" />
           </a>
         </div>
       </div>

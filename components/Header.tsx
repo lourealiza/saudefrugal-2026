@@ -7,9 +7,9 @@ import { withBase } from "@/lib/base";
 const links = [
   { label: "Sobre", href: "/sobre" },
   { label: "Cursos", href: "/cursos" },
-  { label: "Retiros", href: "/#retiro" },
-  { label: "Livros", href: "/#loja" },
-  { label: "Loja", href: "/#loja" },
+  { label: "Retiros", href: "/retiros" },
+  { label: "Livros", href: "/loja" },
+  { label: "Loja", href: "/loja" },
   { label: "Contato", href: "/#contato" },
 ];
 

@@ -1,32 +1,33 @@
 import { Arrow, Course, Retreat, Book, Consult } from "./icons";
+import { withBase } from "@/lib/base";
 
 const pillars = [
   {
     icon: Course,
     title: "Cursos online",
     desc: "Aprenda no seu ritmo: jejum, dieta anticâncer, antidiabetes e mais. Teoria, ciência e prática.",
-    href: "#caminhos",
+    href: "/cursos",
     cta: "Ver cursos",
   },
   {
     icon: Retreat,
     title: "Retiros",
     desc: "Imersões presenciais de 5 a 10 dias com aulas culinárias, atividades e detox guiado.",
-    href: "#retiro",
+    href: "/retiros",
     cta: "Próximas datas",
   },
   {
     icon: Book,
     title: "Livros",
     desc: "10 títulos do Dr. Corassa, da Dieta do Éden ao Jejum Higienista. Didáticos e de receitas.",
-    href: "#loja",
+    href: "/loja",
     cta: "Conhecer livros",
   },
   {
     icon: Consult,
     title: "Consulta",
     desc: "Atendimento individual e palestras para um plano de estilo de vida sob medida para você.",
-    href: "#contato",
+    href: "/#contato",
     cta: "Agendar",
   },
 ];
@@ -42,7 +43,7 @@ export default function Pillars() {
             </p>
             <h2>Quatro caminhos para mudar sua saúde</h2>
           </div>
-          <a href="#loja" className="btn btn--ghost">
+          <a href={withBase("/loja")} className="btn btn--ghost">
             Ver tudo na loja <Arrow className="arrow" />
           </a>
         </div>
@@ -51,7 +52,7 @@ export default function Pillars() {
           {pillars.map((p) => {
             const Icon = p.icon;
             return (
-              <a key={p.title} href={p.href} className="pillar reveal">
+              <a key={p.title} href={withBase(p.href)} className="pillar reveal">
                 <span className="pillar__icon">
                   <Icon size={26} />
                 </span>
