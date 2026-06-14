@@ -65,10 +65,39 @@ Os pontos abaixo usam placeholders e devem ser substituídos pelo material do cl
 - [ ] Integrar o formulário do e-book a um provedor de e-mail (Mailchimp/Brevo/etc.)
 - [ ] Links de navegação reais para as páginas internas (cursos, loja, blog)
 
-## Deploy na Vercel
+## Deploy (GitHub Pages)
+
+O site é publicado automaticamente via GitHub Actions a cada `push` na `main`
+(workflow em [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)),
+como **export estático** (`output: 'export'`).
+
+### Preview atual (subcaminho)
+Enquanto o domínio próprio não está ativo, o build usa `NEXT_PUBLIC_BASE_PATH=/saudefrugal-2026`
+para funcionar em:
+
+> https://lourealiza.github.io/saudefrugal-2026/
+
+### Go-live no domínio próprio (saudefrugal.com.br)
+Quando quiser apontar o domínio (isso **substitui o site atual no ar**):
+
+1. **DNS** (no Cloudflare do domínio):
+   - 4 registros **A** do apex `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - **CNAME** `www` → `lourealiza.github.io`
+   - Durante a verificação, deixe como **DNS only** (nuvem cinza)
+2. No repositório: **Settings → Pages → Custom domain** = `saudefrugal.com.br` e marque **Enforce HTTPS**.
+3. No workflow [`deploy.yml`](.github/workflows/deploy.yml), **remova** o bloco
+   `env: NEXT_PUBLIC_BASE_PATH: /saudefrugal-2026` do passo de build (o site
+   passa a servir na raiz). O arquivo [`public/CNAME`](public/CNAME) já contém o domínio.
+4. Faça `push` — o deploy republica na raiz do domínio.
+
+> Para alternar local/raiz manualmente: `NEXT_PUBLIC_BASE_PATH=/saudefrugal-2026 npm run build`
+> (subcaminho) vs `npm run build` (raiz).
+
+## Alternativa: deploy na Vercel
 
 ```bash
 npm i -g vercel
 vercel          # preview
 vercel --prod   # produção
 ```
+Na Vercel não há export estático nem `basePath` — bastaria remover `output: 'export'`.
