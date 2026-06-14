@@ -35,9 +35,12 @@ npm run start      # serve o build de produção
 app/
   layout.tsx       # fontes, metadados, <html>
   page.tsx         # composição da home
-  globals.css      # design system (tokens, tipografia, seções)
+  cursos/page.tsx  # catálogo de cursos (filtro + como funciona + FAQ)
+  sobre/page.tsx   # página institucional do Dr. Corassa
+  globals.css      # design system (tokens, tipografia, seções, páginas)
 components/
   Header.tsx       # navegação sticky (client — estado de scroll)
+  CourseCatalog.tsx# catálogo filtrável por categoria (client)
   Hero.tsx         # headline editorial + stats + retrato
   Marquee.tsx      # faixa rolante de temas
   Pillars.tsx      # quatro caminhos

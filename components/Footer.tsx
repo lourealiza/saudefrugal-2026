@@ -3,15 +3,29 @@ import { Leaf, Instagram, Youtube, Spotify, Facebook } from "./icons";
 const cols = [
   {
     title: "Conteúdo",
-    links: ["Cursos online", "Retiros", "Livros", "Blog", "YouTube"],
+    links: [
+      { label: "Cursos online", href: "/cursos" },
+      { label: "Retiros", href: "/#retiro" },
+      { label: "Livros", href: "/#loja" },
+      { label: "Blog", href: "#" },
+      { label: "YouTube", href: "https://www.youtube.com/@saudefrugal" },
+    ],
   },
   {
     title: "Institucional",
-    links: ["Sobre o Dr. Corassa", "Palestras", "Loja virtual", "Contato"],
+    links: [
+      { label: "Sobre o Dr. Corassa", href: "/sobre" },
+      { label: "Palestras", href: "#" },
+      { label: "Loja virtual", href: "/#loja" },
+      { label: "Contato", href: "/#contato" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Política de Privacidade", "Termos de Uso"],
+    links: [
+      { label: "Política de Privacidade", href: "#" },
+      { label: "Termos de Uso", href: "#" },
+    ],
   },
 ];
 
@@ -21,7 +35,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer__top">
           <div className="footer__brand">
-            <a href="#topo" className="logo">
+            <a href="/" className="logo">
               <Leaf className="leaf" />
               <span>
                 Dr. <b>Corassa</b>
@@ -52,8 +66,8 @@ export default function Footer() {
               <h4>{c.title}</h4>
               <ul>
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#">{l}</a>
+                  <li key={l.label}>
+                    <a href={l.href}>{l.label}</a>
                   </li>
                 ))}
               </ul>
