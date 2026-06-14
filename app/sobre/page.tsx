@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, Leaf, Check, Consult, WhatsApp } from "@/components/icons";
+import { withBase } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Sobre o Dr. Eduardo Corassa — Saúde Frugal",
@@ -43,7 +44,7 @@ export default function SobrePage() {
         <section className="page-hero">
           <div className="wrap">
             <p className="breadcrumb">
-              <a href="/">Início</a> / Sobre
+              <a href={withBase("/")}>Início</a> / Sobre
             </p>
             <div className="about__grid" style={{ marginTop: "2rem" }}>
               <div className="about__portrait reveal">
@@ -126,10 +127,10 @@ export default function SobrePage() {
                 em um retiro presencial ao lado do Dr. Corassa.
               </p>
               <div className="actions">
-                <a href="/cursos" className="btn btn--primary">
+                <a href={withBase("/cursos")} className="btn btn--primary">
                   Ver os cursos <Arrow className="arrow" />
                 </a>
-                <a href="/#retiro" className="btn btn--light">
+                <a href={withBase("/#retiro")} className="btn btn--light">
                   Conhecer os retiros
                 </a>
               </div>

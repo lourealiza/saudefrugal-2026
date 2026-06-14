@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import CourseCatalog from "@/components/CourseCatalog";
 import { Arrow, WhatsApp } from "@/components/icons";
+import { withBase } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Cursos online · Dr. Eduardo Corassa — Saúde Frugal",
@@ -56,7 +57,7 @@ export default function CursosPage() {
         <section className="page-hero">
           <div className="wrap">
             <p className="breadcrumb">
-              <a href="/">Início</a> / Cursos
+              <a href={withBase("/")}>Início</a> / Cursos
             </p>
             <p className="eyebrow" style={{ marginTop: "1.4rem" }}>
               Cursos online
@@ -132,7 +133,7 @@ export default function CursosPage() {
                 <a href="https://wa.me/" className="btn btn--primary">
                   Falar no WhatsApp <Arrow className="arrow" />
                 </a>
-                <a href="/#caminhos" className="btn btn--light">
+                <a href={withBase("/#caminhos")} className="btn btn--light">
                   Ver outros caminhos
                 </a>
               </div>

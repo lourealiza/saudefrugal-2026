@@ -1,4 +1,5 @@
 import { Leaf, Instagram, Youtube, Spotify, Facebook } from "./icons";
+import { withBase } from "@/lib/base";
 
 const cols = [
   {
@@ -35,7 +36,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer__top">
           <div className="footer__brand">
-            <a href="/" className="logo">
+            <a href={withBase("/")} className="logo">
               <Leaf className="leaf" />
               <span>
                 Dr. <b>Corassa</b>
@@ -67,7 +68,7 @@ export default function Footer() {
               <ul>
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href}>{l.label}</a>
+                    <a href={withBase(l.href)}>{l.label}</a>
                   </li>
                 ))}
               </ul>

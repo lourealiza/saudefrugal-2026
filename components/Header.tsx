@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Leaf, Menu } from "./icons";
+import { withBase } from "@/lib/base";
 
 const links = [
   { label: "Sobre", href: "/sobre" },
@@ -25,7 +26,7 @@ export default function Header() {
   return (
     <header className="header" data-scrolled={scrolled}>
       <div className="wrap header__inner">
-        <a href="/" className="logo" aria-label="Dr. Corassa · Saúde Frugal">
+        <a href={withBase("/")} className="logo" aria-label="Dr. Corassa · Saúde Frugal">
           <Leaf className="leaf" />
           <span>
             Dr. <b>Corassa</b>
@@ -36,11 +37,11 @@ export default function Header() {
           <ul className="nav__links">
             {links.map((l) => (
               <li key={l.label}>
-                <a href={l.href}>{l.label}</a>
+                <a href={withBase(l.href)}>{l.label}</a>
               </li>
             ))}
           </ul>
-          <a href="#contato" className="btn btn--primary">
+          <a href={withBase("/#contato")} className="btn btn--primary">
             Agendar consulta
           </a>
           <button className="nav__toggle" aria-label="Abrir menu">
