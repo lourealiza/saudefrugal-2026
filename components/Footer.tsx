@@ -1,0 +1,71 @@
+import { Leaf, Instagram, Youtube, Spotify, Facebook } from "./icons";
+
+const cols = [
+  {
+    title: "Conteúdo",
+    links: ["Cursos online", "Retiros", "Livros", "Blog", "YouTube"],
+  },
+  {
+    title: "Institucional",
+    links: ["Sobre o Dr. Corassa", "Palestras", "Loja virtual", "Contato"],
+  },
+  {
+    title: "Legal",
+    links: ["Política de Privacidade", "Termos de Uso"],
+  },
+];
+
+export default function Footer() {
+  return (
+    <footer className="footer" id="contato">
+      <div className="wrap">
+        <div className="footer__top">
+          <div className="footer__brand">
+            <a href="#topo" className="logo">
+              <Leaf className="leaf" />
+              <span>
+                Dr. <b>Corassa</b>
+              </span>
+            </a>
+            <p>
+              Saúde de verdade pelo estilo de vida: alimentação natural, jejum e
+              hábitos que transformam o corpo de dentro para fora.
+            </p>
+            <div className="footer__social">
+              <a href="https://www.instagram.com/" aria-label="Instagram">
+                <Instagram />
+              </a>
+              <a href="https://www.youtube.com/@saudefrugal" aria-label="YouTube">
+                <Youtube />
+              </a>
+              <a href="https://open.spotify.com/" aria-label="Spotify">
+                <Spotify />
+              </a>
+              <a href="https://www.facebook.com/" aria-label="Facebook">
+                <Facebook />
+              </a>
+            </div>
+          </div>
+
+          {cols.map((c) => (
+            <div key={c.title} className="footer__col">
+              <h4>{c.title}</h4>
+              <ul>
+                {c.links.map((l) => (
+                  <li key={l}>
+                    <a href="#">{l}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="footer__bottom">
+          <span>© {new Date().getFullYear()} Dr. Eduardo Corassa · Saúde Frugal. Todos os direitos reservados.</span>
+          <span>Feito com cuidado · saudefrugal.com.br</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
