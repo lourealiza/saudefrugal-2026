@@ -30,12 +30,9 @@ jobs:
         run: npm ci
 
       - name: Build static export
+        # GO-LIVE: build na RAIZ (sem NEXT_PUBLIC_BASE_PATH) para o domínio
+        # próprio saudefrugal.com.br. O arquivo public/CNAME define o domínio.
         run: npm run build
-        # PREVIEW: builds for the GitHub Pages subpath so the site renders at
-        # lourealiza.github.io/saudefrugal-2026. No GO-LIVE: remova esta linha
-        # (e o domínio passa a servir na raiz) quando apontar o DNS.
-        env:
-          NEXT_PUBLIC_BASE_PATH: /saudefrugal-2026
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
