@@ -6,7 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "books:list": "node _scripts/list-2026-produtos.mjs",
+    "books:preview": "node _scripts/preview-livros.mjs",
+    "books:restore": "node _scripts/restore-livros.mjs",
+    "books:restore:apply": "node _scripts/restore-livros.mjs --apply",
+    "books:restore:create": "node _scripts/restore-livros.mjs --apply --create",
+    "books:restore:full": "node _scripts/restore-livros.mjs --apply --create --force",
+    "books:enrich": "node _scripts/enrich-livros.mjs",
+    "books:enrich:apply": "node _scripts/enrich-livros.mjs --apply"
   },
   "dependencies": {
     "next": "15.1.6",
