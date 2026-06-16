@@ -30,3 +30,9 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# scripts de migração de conteúdo (output local)
+/preview-livros.html
+/restore-livros.log.json
+/produtos-2026.json
+/preview-enriquecido.html

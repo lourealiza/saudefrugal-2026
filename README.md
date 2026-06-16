@@ -65,6 +65,50 @@ Os pontos abaixo usam placeholders e devem ser substituídos pelo material do cl
 - [ ] Integrar o formulário do e-book a um provedor de e-mail (Mailchimp/Brevo/etc.)
 - [ ] Links de navegação reais para as páginas internas (cursos, loja, blog)
 
+## Migração do conteúdo dos livros (WordPress /2026/)
+
+O conteúdo original (verbatim) dos 14 livros vive nos produtos WooCommerce da
+raiz `saudefrugal.com.br` e é restaurado nos produtos correspondentes do
+WordPress de staging em `saudefrugal.com.br/2026/`.
+
+Defina a credencial (usuário + Application Password do WP) e rode:
+
+```powershell
+$env:WP_AUTH="usuario:application-password"
+npm run books:preview        # gera preview-livros.html (conferência, read-only)
+npm run books:restore         # DRY-RUN: mostra o que mudaria, não grava nada
+npm run books:restore:apply   # GRAVA o conteúdo nos produtos existentes do /2026/
+npm run books:restore:create  # GRAVA + cria os livros faltantes como rascunho
+npm run books:restore:full    # GRAVA + cria faltantes + --force (sobrescreve destino maior)
+```
+
+- `apply` só atualiza produtos que **já existem** no /2026/.
+- `create` (= `--apply --create`) também **cria** os livros faltantes como
+  **rascunho** (`status: draft`) — preço, tipo e demais campos do WooCommerce
+  ficam para ajustar no admin. Rode o DRY-RUN com `--create` antes para ver o
+  que seria criado: `node _scripts/restore-livros.mjs --create`.
+- Cada execução gera `restore-livros.log.json` com o resultado item a item.
+
+### Segunda passada — enriquecimento (Elementor)
+
+Vários livros têm `content` curto porque a descrição real é montada com
+**Elementor** (não fica em `post_content`). O `enrich-livros.mjs` baixa o HTML
+**renderizado** da página pública, extrai o miolo e grava no produto do /2026/:
+
+```powershell
+$env:WP_AUTH="usuario:application-password"
+npm run books:enrich         # gera preview-enriquecido.html (confira o bloco capturado)
+npm run books:enrich:apply   # grava o conteúdo extraído nos produtos do /2026/
+```
+
+- A extração é **best-effort**: confira `preview-enriquecido.html` antes do apply
+  e ajuste `PICK_SELECTORS` em `_scripts/enrich-livros.mjs` se vier bloco errado.
+- Combos têm `enrich:false` (são curtos por natureza).
+
+> **IDs do /2026/** (após a 1ª migração) estão fixados no mapa `BOOKS` de
+> `restore-livros.mjs`/`enrich-livros.mjs` — não reverter para `null`, senão
+> uma nova execução recria produtos duplicados.
+
 ## Deploy (GitHub Pages)
 
 O site é publicado automaticamente via GitHub Actions a cada `push` na `main`
