@@ -14,7 +14,9 @@
     "books:restore:create": "node _scripts/restore-livros.mjs --apply --create",
     "books:restore:full": "node _scripts/restore-livros.mjs --apply --create --force",
     "books:enrich": "node _scripts/enrich-livros.mjs",
-    "books:enrich:apply": "node _scripts/enrich-livros.mjs --apply"
+    "books:enrich:apply": "node _scripts/enrich-livros.mjs --apply",
+    "books:clone": "node _scripts/clone-paginas.mjs",
+    "books:clone:apply": "node _scripts/clone-paginas.mjs --apply"
   },
   "dependencies": {
     "next": "15.1.6",

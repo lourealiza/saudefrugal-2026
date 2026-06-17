@@ -105,6 +105,35 @@ npm run books:enrich:apply   # grava o conteúdo extraído nos produtos do /2026
   e ajuste `PICK_SELECTORS` em `_scripts/enrich-livros.mjs` se vier bloco errado.
 - Combos têm `enrich:false` (são curtos por natureza).
 
+### Clone fiel das páginas (layout Elementor)
+
+Para recriar as páginas dos livros no /2026/ **preservando o layout Elementor**
+(não só o texto), use `clone-paginas.mjs`. O layout vive na meta `_elementor_data`,
+que **não é exposta na REST por padrão** — por isso há um pré-requisito:
+
+1. **Instale o mu-plugin** `_scripts/wp-mu-plugin/expose-elementor-meta.php` em
+   `wp-content/mu-plugins/` **nos dois sites** (raiz para ler, /2026/ para gravar).
+   A pasta `mu-plugins` ativa sozinha, sem precisar do painel.
+2. Rode:
+
+```powershell
+$env:WP_AUTH="usuario:application-password"
+node _scripts/clone-paginas.mjs                                # dry-run (valida leitura da meta)
+node _scripts/clone-paginas.mjs --only=a-dieta-do-eden --apply # TESTE em 1 página primeiro
+node _scripts/clone-paginas.mjs --apply                        # processa as 10 páginas
+```
+
+3. No /2026/, se o estilo não aparecer: **Elementor → Ferramentas → Regenerar
+   Arquivos & Dados**.
+
+**Cuidados / limitações conhecidas:**
+- As páginas são criadas como **rascunho**.
+- As **imagens** referenciadas no layout apontam para `/wp-content/uploads` da
+  raiz (carregam por serem no mesmo domínio, mas o ideal é reimportar a mídia).
+- O **kit global** do Elementor (cores/fontes) difere entre os sites — pode haver
+  diferença de estilo até alinhar o kit do /2026/.
+- **Remova o mu-plugin dos dois sites** ao terminar a migração.
+
 > **IDs do /2026/** (após a 1ª migração) estão fixados no mapa `BOOKS` de
 > `restore-livros.mjs`/`enrich-livros.mjs` — não reverter para `null`, senão
 > uma nova execução recria produtos duplicados.
