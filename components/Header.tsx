@@ -9,7 +9,7 @@ const links = [
   { label: "Cursos", href: "/cursos" },
   { label: "Retiros", href: "/retiros" },
   { label: "Livros", href: "/loja" },
-  { label: "Loja", href: "/loja" },
+  { label: "Blog", href: "/blog" },
   { label: "Contato", href: "/#contato" },
 ];
 
