@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -10,6 +12,18 @@ export const metadata: Metadata = {
   description:
     "Imersões de 5 a 10 dias com aulas culinárias, jejum guiado, atividades e detox ao lado do Dr. Corassa. Conheça os próximos retiros.",
 };
+
+// Reserva/inscrição dos retiros (loja /2026/)
+const RETIROS_URL = "https://saudefrugal.com.br/2026/retiros/";
+const HOSPEDAGEM_URL = "https://saudefrugal.com.br/2026/retiros/hospedagem-internato/";
+
+function loadHospedagem(): string | null {
+  try {
+    return readFileSync(join(process.cwd(), "content", "retiros", "hospedagem.html"), "utf8");
+  } catch {
+    return null;
+  }
+}
 
 const includes = [
   "Duas aulas culinárias por dia, com degustação",
@@ -51,6 +65,7 @@ const retreats = [
 ];
 
 export default function RetirosPage() {
+  const hospedagem = loadHospedagem();
   return (
     <>
       <Header />
@@ -151,7 +166,12 @@ export default function RetirosPage() {
                       <span>🗓 {r.when}</span>
                       <span>⏳ {r.days}</span>
                     </div>
-                    <a href="https://wa.me/" className="btn btn--primary">
+                    <a
+                      href={RETIROS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn--primary"
+                    >
                       Garantir minha vaga <Arrow className="arrow" />
                     </a>
                   </div>
@@ -161,20 +181,49 @@ export default function RetirosPage() {
           </div>
         </section>
 
+        {hospedagem && (
+          <section className="section pillars">
+            <div className="wrap">
+              <div className="section__head">
+                <div>
+                  <p className="eyebrow" style={{ marginBottom: "1rem" }}>
+                    Onde você fica
+                  </p>
+                  <h2>Hospedagem &amp; internato</h2>
+                </div>
+                <a
+                  href={HOSPEDAGEM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--ghost"
+                >
+                  Ver opções de hospedagem
+                </a>
+              </div>
+              <article className="prose" dangerouslySetInnerHTML={{ __html: hospedagem }} />
+            </div>
+          </section>
+        )}
+
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
             <div className="cta-band reveal">
               <h2>As vagas são limitadas a cada edição</h2>
               <p>
-                Fale com a nossa equipe pelo WhatsApp para saber datas, valores e
-                garantir o seu lugar no próximo retiro.
+                Veja datas, valores e garanta o seu lugar no próximo retiro — ou fale
+                com a nossa equipe pelo WhatsApp.
               </p>
               <div className="actions">
-                <a href="https://wa.me/" className="btn btn--primary">
-                  Falar no WhatsApp <Arrow className="arrow" />
+                <a
+                  href={RETIROS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                >
+                  Ver retiros e reservar <Arrow className="arrow" />
                 </a>
-                <a href={withBase("/cursos")} className="btn btn--light">
-                  Ver cursos online
+                <a href="https://wa.me/" className="btn btn--light">
+                  Falar no WhatsApp
                 </a>
               </div>
             </div>
