@@ -113,7 +113,10 @@ que **não é exposta na REST por padrão** — por isso há um pré-requisito:
 
 1. **Instale o mu-plugin** `_scripts/wp-mu-plugin/expose-elementor-meta.php` em
    `wp-content/mu-plugins/` **nos dois sites** (raiz para ler, /2026/ para gravar).
-   A pasta `mu-plugins` ativa sozinha, sem precisar do painel.
+   Copie **o arquivo .php direto** na pasta (não dentro de subpasta — mu-plugins
+   não carrega subpastas). Ele cria o campo REST `elementor_export` (read/write),
+   pois as metas `_elementor_*` são protegidas e não saem por `register_post_meta`.
+   Legível/gravável só por quem pode editar a página.
 2. Rode (Application Password é **por site** — use o **login**, não o e-mail):
 
 ```powershell

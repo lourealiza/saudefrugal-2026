@@ -103,8 +103,8 @@ const log = [];
 let done = 0, failed = 0, noLayout = 0;
 
 for (const slug of PAGES) {
-  // 1) Lê a página da raiz COM meta
-  const src = await getRoot(`${ROOT}/pages?slug=${slug}&_fields=id,slug,title,content,template,meta`);
+  // 1) Lê a página da raiz com o campo elementor_export (criado pelo mu-plugin)
+  const src = await getRoot(`${ROOT}/pages?slug=${slug}&_fields=id,slug,title,content,template,elementor_export`);
   const list = asList(src);
   if (!list) {
     console.log(`✗ ${slug}: resposta inesperada da raiz — ${errMsg(src)} (mu-plugin instalado na RAIZ?)`);
@@ -119,22 +119,22 @@ for (const slug of PAGES) {
     failed++;
     continue;
   }
-  const elData = p.meta?._elementor_data;
+  const exp = p.elementor_export && typeof p.elementor_export === "object" ? p.elementor_export : null;
+  const elData = exp?._elementor_data;
   const hasLayout = typeof elData === "string" && elData.length > 2;
   if (!hasLayout) {
-    console.log(`⚠ ${slug}: _elementor_data NÃO veio na REST — mu-plugin instalado na RAIZ? (copiaria só texto)`);
+    console.log(`⚠ ${slug}: elementor_export sem _elementor_data — mu-plugin ativo na RAIZ e usuário com edit_post? (copiaria só texto)`);
     noLayout++;
   }
 
-  // monta meta a copiar (só o que veio)
-  const meta = {};
-  for (const k of ELEMENTOR_META) if (p.meta && p.meta[k] != null && p.meta[k] !== "") meta[k] = p.meta[k];
-  // garante modo builder no destino
-  meta._elementor_edit_mode = "builder";
-  if (!meta._elementor_template_type) meta._elementor_template_type = "wp-page";
+  // monta o pacote de metas a gravar (só o que veio) + garante modo builder
+  const elementor_export = {};
+  for (const k of ELEMENTOR_META) if (exp && exp[k] != null && exp[k] !== "") elementor_export[k] = exp[k];
+  elementor_export._elementor_edit_mode = "builder";
+  if (!elementor_export._elementor_template_type) elementor_export._elementor_template_type = "wp-page";
 
   const title = (p.title?.rendered || slug).replace(/<[^>]+>/g, "");
-  const payloadBase = { title, slug, status: "draft", content: p.content?.rendered || "", template: p.template || "", meta };
+  const payloadBase = { title, slug, status: "draft", content: p.content?.rendered || "", template: p.template || "", elementor_export };
 
   // 2) Já existe no /2026/? (evita duplicata)
   const ex = await get2026(`${SITE2026}/pages?slug=${slug}&status=any&_fields=id,slug`);
