@@ -114,14 +114,17 @@ que **não é exposta na REST por padrão** — por isso há um pré-requisito:
 1. **Instale o mu-plugin** `_scripts/wp-mu-plugin/expose-elementor-meta.php` em
    `wp-content/mu-plugins/` **nos dois sites** (raiz para ler, /2026/ para gravar).
    A pasta `mu-plugins` ativa sozinha, sem precisar do painel.
-2. Rode:
+2. Rode (Application Password é **por site** — use o **login**, não o e-mail):
 
 ```powershell
-$env:WP_AUTH="usuario:application-password"
+$env:WP_AUTH_ROOT="login_raiz:xxxx xxxx xxxx xxxx xxxx xxxx"   # ler na raiz (precisa edit_pages)
+$env:WP_AUTH_2026="login_2026:yyyy yyyy yyyy yyyy yyyy yyyy"   # gravar no /2026/
 node _scripts/clone-paginas.mjs                                # dry-run (valida leitura da meta)
 node _scripts/clone-paginas.mjs --only=a-dieta-do-eden --apply # TESTE em 1 página primeiro
 node _scripts/clone-paginas.mjs --apply                        # processa as 10 páginas
 ```
+
+> Se o mesmo login/senha valer nos dois sites, dá para usar só `WP_AUTH` (fallback).
 
 3. No /2026/, se o estilo não aparecer: **Elementor → Ferramentas → Regenerar
    Arquivos & Dados**.
