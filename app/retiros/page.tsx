@@ -97,9 +97,11 @@ export default function RetirosPage() {
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap feature__grid">
             <div className="feature__media reveal">
-              {/* Substituir por foto do retiro: /public/retiro.jpg */}
               <span className="feature__tag">Imersão · 5 a 10 dias</span>
-              imagem · retiro
+              <img
+                src={withBase("/cozinha-natural.webp")}
+                alt="Preparo de alimentos naturais durante o retiro"
+              />
             </div>
             <div className="reveal">
               <p className="eyebrow" style={{ marginBottom: "1rem" }}>

@@ -673,12 +673,7 @@ em.serif {
   transform: rotate(4deg);
   position: relative;
   z-index: 1;
-  display: grid;
-  place-items: center;
-  color: var(--herb-deep);
-  font-family: var(--font-display);
-  text-align: center;
-  padding: 1.5rem;
+  object-fit: cover;
   transition: transform 0.5s var(--ease);
 }
 .ebook__cover:hover { transform: rotate(0deg) scale(1.02); }
@@ -1061,6 +1056,12 @@ em.serif {
   color: rgba(255,255,255,0.85);
   font-family: var(--font-display);
   padding-bottom: 2rem;
+  overflow: hidden;
+}
+.about__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .about__lead {
   font-family: var(--font-display);

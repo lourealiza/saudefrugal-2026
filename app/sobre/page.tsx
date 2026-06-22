@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const creds = [
   { num: "10", label: "Livros publicados" },
-  { num: "9", label: "Cursos online" },
+  { num: "6", label: "Cursos online" },
   { num: "5–10", label: "Dias de retiro detox" },
   { num: "8h", label: "De programação diária no retiro" },
 ];
@@ -48,8 +48,10 @@ export default function SobrePage() {
             </p>
             <div className="about__grid" style={{ marginTop: "2rem" }}>
               <div className="about__portrait reveal">
-                {/* Substituir pela foto do Dr. Corassa: /public/dr-corassa.jpg */}
-                foto · Dr. Eduardo Corassa
+                <img
+                  src={withBase("/dr-corassa.webp")}
+                  alt="Dr. Eduardo Corassa segurando uma cesta de vegetais e frutas frescas"
+                />
               </div>
               <div className="reveal">
                 <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>

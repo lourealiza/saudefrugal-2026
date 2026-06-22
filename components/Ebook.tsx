@@ -1,4 +1,5 @@
 import { Arrow } from "./icons";
+import { withBase } from "@/lib/base";
 
 export default function Ebook() {
   return (
@@ -33,11 +34,11 @@ export default function Ebook() {
             </form>
           </div>
 
-          <div className="ebook__cover" aria-hidden>
-            Saúde
-            <br />
-            sem remédios
-          </div>
+          <img
+            className="ebook__cover"
+            src={withBase("/ebook-saude-frugal.webp")}
+            alt="Capa do livro Saúde Frugal — O guia ao crudivorismo frugívoro, de Eduardo Corassa"
+          />
         </div>
       </div>
     </section>
