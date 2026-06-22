@@ -1,5 +1,4 @@
-// Fonte única dos cursos. Checkout na loja /2026/ (WooCommerce):
-//   buyUrl   -> página do produto em /2026/lojavirtual-saudefrugal/<slug>/
+// Fonte única dos cursos. Checkout no Hotmart (buyUrl = link pay.hotmart.com).
 //   conteúdo -> content/cursos/<slug>.html (fetch-cursos-conteudo.mjs)
 
 export type CursoCategoria = "Saúde" | "Receitas";
@@ -16,8 +15,6 @@ export type Curso = {
   buyUrl: string;
 };
 
-const LOJA = "https://saudefrugal.com.br/2026/lojavirtual-saudefrugal";
-
 export const cursos: Curso[] = [
   {
     slug: "metodo-saude-maxima",
@@ -28,7 +25,7 @@ export const cursos: Curso[] = [
     categoria: "Saúde",
     c1: "#5a8a5a",
     c2: "#234d2e",
-    buyUrl: `${LOJA}/metodo-saude-maxima/`,
+    buyUrl: "https://pay.hotmart.com/L35981231B?off=int5h1lo&checkoutMode=10",
   },
   {
     slug: "corpo-perfeito",
@@ -61,7 +58,7 @@ export const cursos: Curso[] = [
     categoria: "Receitas",
     c1: "#d08a4e",
     c2: "#7a3f1e",
-    buyUrl: `${LOJA}/curso-doces-saudaveis-sem-acucar/`,
+    buyUrl: "https://pay.hotmart.com/S53926140W",
   },
   {
     slug: "lacto-zero",
@@ -83,7 +80,7 @@ export const cursos: Curso[] = [
     categoria: "Receitas",
     c1: "#c47b6a",
     c2: "#6a2f24",
-    buyUrl: `${LOJA}/sorvetes-fit-naturais/`,
+    buyUrl: "https://pay.hotmart.com/T60232194R",
   },
 ];
 
