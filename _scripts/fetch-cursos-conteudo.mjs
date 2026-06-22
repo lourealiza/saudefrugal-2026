@@ -13,6 +13,7 @@ const MAP = [
   ["lacto-zero", "lacto-zero-leites-e-queijos-vegetais"],
   ["doces-saudaveis", "curso-doces-saudaveis-sem-acucar"],
   ["corpo-perfeito", "programa-corpo-perfeito-vegpower"],
+  ["jejum-detox", "jejum-detox"],
 ];
 
 const KEEP_ATTR = { a: ["href"], img: ["src", "alt"], iframe: ["src"] };

@@ -39,7 +39,18 @@ export const cursos: Curso[] = [
     categoria: "Saúde",
     c1: "#3f7a4c",
     c2: "#14271a",
-    buyUrl: `${LOJA}/programa-corpo-perfeito-vegpower/`,
+    buyUrl: "https://pay.hotmart.com/K10711129K?off=nmps3hha",
+  },
+  {
+    slug: "jejum-detox",
+    title: "Método Jejum Detox",
+    excerpt:
+      "Aprenda a jejuar com segurança para desintoxicar o organismo, emagrecer e prevenir doenças — o método guiado do Dr. Corassa.",
+    nivel: "Iniciante",
+    categoria: "Saúde",
+    c1: "#4a7a4f",
+    c2: "#1d4029",
+    buyUrl: "https://pay.hotmart.com/M75801130E?off=8jvtkcyw",
   },
   {
     slug: "doces-saudaveis",
@@ -61,7 +72,7 @@ export const cursos: Curso[] = [
     categoria: "Receitas",
     c1: "#caa84a",
     c2: "#6f6320",
-    buyUrl: `${LOJA}/lacto-zero-leites-e-queijos-vegetais/`,
+    buyUrl: "https://pay.hotmart.com/F46648985I",
   },
   {
     slug: "sorvetes-fit",
