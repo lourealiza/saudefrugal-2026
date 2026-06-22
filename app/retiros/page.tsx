@@ -87,7 +87,7 @@ export default function RetirosPage() {
               Dr. Corassa.
             </p>
             <div className="hero__cta" style={{ marginTop: "2rem" }}>
-              <a href="https://wa.me/" className="btn btn--primary">
+              <a href="https://wa.me/5521981928668" className="btn btn--primary">
                 Falar sobre o próximo retiro <Arrow className="arrow" />
               </a>
             </div>
@@ -222,7 +222,7 @@ export default function RetirosPage() {
                 >
                   Ver retiros e reservar <Arrow className="arrow" />
                 </a>
-                <a href="https://wa.me/" className="btn btn--light">
+                <a href="https://wa.me/5521981928668" className="btn btn--light">
                   Falar no WhatsApp
                 </a>
               </div>
@@ -234,7 +234,7 @@ export default function RetirosPage() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href="https://wa.me/5521981928668"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

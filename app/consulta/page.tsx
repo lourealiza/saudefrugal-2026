@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Atendimento nutricional online com o Dr. Eduardo Corassa: avaliação completa, plano alimentar natural e acompanhamento para prevenir e reverter doenças pelo estilo de vida.",
 };
 
-const WHATSAPP = "https://wa.me/";
+const WHATSAPP = "https://wa.me/5521981928668";
 
 const incluso = [
   "Avaliação completa do seu histórico de saúde e hábitos",

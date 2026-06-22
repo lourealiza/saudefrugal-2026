@@ -138,7 +138,7 @@ export default async function CursoPage({
                 >
                   Quero este curso <Arrow className="arrow" />
                 </a>
-                <a href="https://wa.me/" className="btn btn--light">
+                <a href="https://wa.me/5521981928668" className="btn btn--light">
                   Tirar dúvidas no WhatsApp
                 </a>
               </div>
@@ -188,7 +188,7 @@ export default async function CursoPage({
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href="https://wa.me/5521981928668"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"
