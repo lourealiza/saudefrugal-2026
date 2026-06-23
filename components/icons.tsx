@@ -103,3 +103,16 @@ export const Facebook = ({ size = 20, className }: IconProps) => (
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z" />
   </svg>
 );
+
+export const TikTok = ({ size = 20, className }: IconProps) => (
+  <svg {...base(size)} className={className} aria-hidden>
+    <path d="M14 3c.4 2.3 1.9 3.9 4 4.2v3c-1.5 0-2.9-.4-4-1.2V15a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v3.1a2 2 0 1 0 1 1.8V3h3Z" />
+  </svg>
+);
+
+export const Kwai = ({ size = 20, className }: IconProps) => (
+  <svg {...base(size)} className={className} aria-hidden>
+    <rect x="3" y="3" width="18" height="18" rx="6" />
+    <path d="M10 9l5 3-5 3V9Z" fill="currentColor" />
+  </svg>
+);

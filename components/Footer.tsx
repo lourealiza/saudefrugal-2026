@@ -1,5 +1,14 @@
-import { Leaf, Instagram, Youtube, Spotify, Facebook } from "./icons";
+import { Leaf, Instagram, Youtube, Spotify, Facebook, TikTok, Kwai } from "./icons";
 import { withBase } from "@/lib/base";
+
+const social = [
+  { label: "Instagram", href: "https://www.instagram.com/drcorassa/", Icon: Instagram },
+  { label: "YouTube", href: "https://www.youtube.com/saudefrugal", Icon: Youtube },
+  { label: "Facebook", href: "https://www.facebook.com/Saudefrugal", Icon: Facebook },
+  { label: "TikTok", href: "https://www.tiktok.com/@drcorassa2", Icon: TikTok },
+  { label: "Kwai", href: "https://www.kwai.com/@saudefrugal", Icon: Kwai },
+  { label: "Spotify", href: "https://open.spotify.com/show/0AJGVnHVKuEAflcisuhtB7", Icon: Spotify },
+];
 
 const cols = [
   {
@@ -8,8 +17,8 @@ const cols = [
       { label: "Cursos online", href: "/cursos" },
       { label: "Retiros", href: "/retiros" },
       { label: "Livros", href: "/loja" },
-      { label: "Blog", href: "#" },
-      { label: "YouTube", href: "https://www.youtube.com/@saudefrugal" },
+      { label: "Blog", href: "/blog" },
+      { label: "YouTube", href: "https://www.youtube.com/saudefrugal" },
     ],
   },
   {
@@ -47,18 +56,17 @@ export default function Footer() {
               hábitos que transformam o corpo de dentro para fora.
             </p>
             <div className="footer__social">
-              <a href="https://www.instagram.com/" aria-label="Instagram">
-                <Instagram />
-              </a>
-              <a href="https://www.youtube.com/@saudefrugal" aria-label="YouTube">
-                <Youtube />
-              </a>
-              <a href="https://open.spotify.com/" aria-label="Spotify">
-                <Spotify />
-              </a>
-              <a href="https://www.facebook.com/" aria-label="Facebook">
-                <Facebook />
-              </a>
+              {social.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
 
