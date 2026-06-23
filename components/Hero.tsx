@@ -1,4 +1,5 @@
 import { Arrow, Play, Leaf } from "./icons";
+import { withBase } from "@/lib/base";
 
 const words = ["Trate", "a", "saúde"];
 
@@ -64,8 +65,10 @@ export default function Hero() {
           <Leaf className="hero__leaf hero__leaf--1" size={60} />
           <Leaf className="hero__leaf hero__leaf--2" size={90} />
           <div className="hero__portrait">
-            {/* Substituir pela foto do Dr. Corassa: /public/dr-corassa.jpg */}
-            <span className="placeholder">foto · Dr. Eduardo Corassa</span>
+            <img
+              src={withBase("/dr-corassa.jpg")}
+              alt="Dr. Eduardo Corassa, criador do Saúde Frugal"
+            />
           </div>
           <div className="hero__badge">
             <span className="dot">✦</span>

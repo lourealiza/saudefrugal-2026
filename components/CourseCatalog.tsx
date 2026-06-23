@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Arrow } from "./icons";
+import { withBase } from "@/lib/base";
 
 type Course = {
   title: string;
@@ -10,6 +11,7 @@ type Course = {
   category: "Saúde" | "Receitas" | "Formação";
   c1: string;
   c2: string;
+  img?: string;
 };
 
 const courses: Course[] = [
@@ -20,6 +22,7 @@ const courses: Course[] = [
     category: "Saúde",
     c1: "#4a7a4f",
     c2: "#1d4029",
+    img: "/cursos/jejum-detox.jpg",
   },
   {
     title: "Método de Saúde Máxima",
@@ -28,6 +31,7 @@ const courses: Course[] = [
     category: "Saúde",
     c1: "#5a8a5a",
     c2: "#234d2e",
+    img: "/cursos/saude-maxima.jpg",
   },
   {
     title: "Dieta Anticâncer",
@@ -52,6 +56,7 @@ const courses: Course[] = [
     category: "Saúde",
     c1: "#7e9a6e",
     c2: "#3e6a40",
+    img: "/cursos/corpo-perfeito.jpg",
   },
   {
     title: "Leites e Queijos Vegetais",
@@ -60,6 +65,7 @@ const courses: Course[] = [
     category: "Receitas",
     c1: "#caa84a",
     c2: "#6f6320",
+    img: "/cursos/lacto-zero.jpg",
   },
   {
     title: "Doces à Vontade",
@@ -68,6 +74,7 @@ const courses: Course[] = [
     category: "Receitas",
     c1: "#d08a4e",
     c2: "#7a3f1e",
+    img: "/cursos/doces-a-vontade.jpg",
   },
   {
     title: "Sorvetes e Milk-shakes",
@@ -76,6 +83,7 @@ const courses: Course[] = [
     category: "Receitas",
     c1: "#c47b6a",
     c2: "#6a2f24",
+    img: "/cursos/sorvetes-fit.jpg",
   },
   {
     title: "Formação de Nutricionistas Higienistas",
@@ -119,6 +127,9 @@ export default function CourseCatalog() {
             style={{ ["--c1" as string]: c.c1, ["--c2" as string]: c.c2 }}
           >
             <div className="course__thumb">
+              {c.img && (
+                <img src={withBase(c.img)} alt={`Curso ${c.title}`} loading="lazy" />
+              )}
               <span className="course__level">{c.level}</span>
             </div>
             <div className="course__body">
