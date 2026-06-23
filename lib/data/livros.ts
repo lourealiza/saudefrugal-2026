@@ -200,6 +200,22 @@ export const livros: Livro[] = [
   },
 ];
 
+// Capas reais em public/livros/. Livros sem capa caem no título sobre gradiente.
+const COVERS: Record<string, string> = {
+  "dieta-do-eden": "/livros/dieta-do-eden.webp",
+  "jejum-higienista": "/livros/jejum-higienista.png",
+  "dieta-anticancer": "/livros/dieta-anticancer.webp",
+  "dieta-antidiabetes": "/livros/dieta-antidiabetes.png",
+  "nutricao-vegana": "/livros/nutricao-vegana.webp",
+  "doces-delicias": "/livros/doces-delicias.webp",
+  "crulinaria-frugal": "/livros/crulinaria-frugal.webp",
+  "cozinhando-sem-o-fogao": "/livros/cozinhando-sem-o-fogao.webp",
+  "combo-10-livros": "/livros/combo-10-livros.webp",
+};
+export function coverUrl(slug: string): string | null {
+  return COVERS[slug] ?? null;
+}
+
 export const livrosBySlug = Object.fromEntries(livros.map((l) => [l.slug, l]));
 export const livrosComPagina = livros.filter((l) => l.pageSlug);
 export const combos = livros.filter((l) => l.categoria === "Combo");

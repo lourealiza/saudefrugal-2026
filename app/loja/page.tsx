@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
-import { livrosAvulsos, combos } from "@/lib/data/livros";
+import { livrosAvulsos, combos, coverUrl } from "@/lib/data/livros";
 
 export const metadata: Metadata = {
   title: "Loja · Livros do Dr. Eduardo Corassa — Saúde Frugal",
@@ -45,7 +45,11 @@ export default function LojaPage() {
                   style={{ ["--c1" as string]: b.c1, ["--c2" as string]: b.c2 }}
                 >
                   <a href={withBase(`/loja/${b.slug}`)} className="book__cover">
-                    {b.title}
+                    {coverUrl(b.slug) ? (
+                      <img src={withBase(coverUrl(b.slug)!)} alt={`Capa do livro ${b.title}`} />
+                    ) : (
+                      b.title
+                    )}
                   </a>
                   <h3>
                     <a href={withBase(`/loja/${b.slug}`)}>{b.title}</a>

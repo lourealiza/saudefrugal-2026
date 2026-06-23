@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
-import { livros, livrosBySlug, livrosAvulsos } from "@/lib/data/livros";
+import { livros, livrosBySlug, livrosAvulsos, coverUrl } from "@/lib/data/livros";
 
 export function generateStaticParams() {
   return livros.map((l) => ({ slug: l.slug }));
@@ -77,7 +77,11 @@ export default async function LivroPage({
                 className="product__cover"
                 style={{ ["--c1" as string]: livro.c1, ["--c2" as string]: livro.c2 }}
               >
-                {livro.title}
+                {coverUrl(livro.slug) ? (
+                  <img src={withBase(coverUrl(livro.slug)!)} alt={`Capa do livro ${livro.title}`} />
+                ) : (
+                  livro.title
+                )}
               </div>
 
               <div className="product__info">
@@ -148,7 +152,11 @@ export default async function LivroPage({
                   style={{ ["--c1" as string]: b.c1, ["--c2" as string]: b.c2 }}
                 >
                   <a href={withBase(`/loja/${b.slug}`)} className="book__cover">
-                    {b.title}
+                    {coverUrl(b.slug) ? (
+                      <img src={withBase(coverUrl(b.slug)!)} alt={`Capa do livro ${b.title}`} />
+                    ) : (
+                      b.title
+                    )}
                   </a>
                   <h3>{b.title}</h3>
                   <span className="book__tag">{b.tag}</span>
