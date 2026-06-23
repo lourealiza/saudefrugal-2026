@@ -76,6 +76,36 @@ function deElementorize(html) {
   return s;
 }
 
+// Remove sobras de ficha de loja antiga (pagamento, formato, amostra, etc.) —
+// o checkout/preço fica na coluna lateral, não no corpo editorial do livro.
+function polish(s) {
+  // Remove um <p>/<div> FOLHA (sem p/div aninhado) que CONTENHA o termo de ficha.
+  const dropLeafWith = (kw) => {
+    const re = new RegExp(
+      `<(p|div)>(?:(?!</?(?:p|div)>)[\\s\\S])*?(?:${kw})(?:(?!</?(?:p|div)>)[\\s\\S])*?</\\1>`,
+      "gi"
+    );
+    s = s.replace(re, "");
+  };
+  [
+    "Pagamento via",
+    "Formato:\\s*Impresso",
+    "Tamanho:",
+    "N[úu]mero de p[áa]ginas",
+    "p[áa]ginas aproximadamente",
+    "Amostra\\s+(?:gratuita|de\\s+30|GRATUITA)",
+    "refer[êe]ncias bibliogr[áa]ficas do livro no final",
+    "Disponibilidade",
+  ].forEach(dropLeafWith);
+  // Link solto de "Amostra ..." (CTA do Drive)
+  s = s.replace(/<a\b[^>]*>\s*Amostra[\s\S]*?<\/a>/gi, "");
+  // Limpa vazios após remover os blocos
+  for (let i = 0; i < 4; i++) {
+    s = s.replace(/<(div|p)>\s*<\/\1>/gi, "");
+  }
+  return s.replace(/\n{3,}/g, "\n\n").trim();
+}
+
 const textLen = (h) => h.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().length;
 
 mkdirSync("content/livros", { recursive: true });
@@ -90,7 +120,7 @@ for (const [slug, pageSlug] of MAP) {
     console.log(`✗ ${slug}: página '${pageSlug}' não encontrada`);
     continue;
   }
-  const cleaned = deElementorize(p.content?.rendered || "");
+  const cleaned = polish(deElementorize(p.content?.rendered || ""));
   writeFileSync(`content/livros/${slug}.html`, cleaned + "\n", "utf8");
   console.log(`✓ ${slug}: ${textLen(cleaned)} chars de texto (de page #${p.id})`);
   ok++;
