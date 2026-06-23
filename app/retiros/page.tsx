@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, Check, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
+import { whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Retiros presenciais · Dr. Eduardo Corassa — Saúde Frugal",
@@ -72,7 +73,7 @@ export default function RetirosPage() {
               Dr. Corassa.
             </p>
             <div className="hero__cta" style={{ marginTop: "2rem" }}>
-              <a href="https://wa.me/" className="btn btn--primary">
+              <a href={whatsappUrl()} className="btn btn--primary">
                 Falar sobre o próximo retiro <Arrow className="arrow" />
               </a>
             </div>
@@ -151,7 +152,7 @@ export default function RetirosPage() {
                       <span>🗓 {r.when}</span>
                       <span>⏳ {r.days}</span>
                     </div>
-                    <a href="https://wa.me/" className="btn btn--primary">
+                    <a href={whatsappUrl()} className="btn btn--primary">
                       Garantir minha vaga <Arrow className="arrow" />
                     </a>
                   </div>
@@ -170,7 +171,7 @@ export default function RetirosPage() {
                 garantir o seu lugar no próximo retiro.
               </p>
               <div className="actions">
-                <a href="https://wa.me/" className="btn btn--primary">
+                <a href={whatsappUrl()} className="btn btn--primary">
                   Falar no WhatsApp <Arrow className="arrow" />
                 </a>
                 <a href={withBase("/cursos")} className="btn btn--light">
@@ -185,7 +186,7 @@ export default function RetirosPage() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

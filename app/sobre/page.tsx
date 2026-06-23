@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, Leaf, Check, Consult, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
+import { whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sobre o Dr. Eduardo Corassa — Saúde Frugal",
@@ -142,7 +143,7 @@ export default function SobrePage() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

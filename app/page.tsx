@@ -8,6 +8,7 @@ import Proof from "@/components/Proof";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { WhatsApp } from "@/components/icons";
+import { whatsappUrl } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

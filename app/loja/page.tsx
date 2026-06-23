@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
+import { whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Loja · Livros do Dr. Eduardo Corassa — Saúde Frugal",
@@ -145,7 +146,7 @@ export default function LojaPage() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"
