@@ -210,7 +210,12 @@ const COVERS: Record<string, string> = {
   "doces-delicias": "/livros/doces-delicias.webp",
   "crulinaria-frugal": "/livros/crulinaria-frugal.webp",
   "cozinhando-sem-o-fogao": "/livros/cozinhando-sem-o-fogao.webp",
+  "vegan-fitness": "/livros/vegan-fitness.webp",
+  "veganismo-para-pais": "/livros/veganismo-para-pais.webp",
   "combo-10-livros": "/livros/combo-10-livros.webp",
+  "combo-6-livros": "/livros/combo-6-livros.webp",
+  "combo-receitas": "/livros/combo-receitas.webp",
+  "combo-presente": "/livros/combo-presente.webp",
 };
 export function coverUrl(slug: string): string | null {
   return COVERS[slug] ?? null;
