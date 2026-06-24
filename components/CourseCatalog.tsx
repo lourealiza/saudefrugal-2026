@@ -12,6 +12,9 @@ type Course = {
   c1: string;
   c2: string;
   img?: string;
+  // object-position do thumb (ex.: "center top" p/ capas de livro, onde o
+  // título fica no topo). Default = centro.
+  imgPos?: string;
 };
 
 const courses: Course[] = [
@@ -40,6 +43,8 @@ const courses: Course[] = [
     category: "Saúde",
     c1: "#3f7a4c",
     c2: "#14271a",
+    img: "/livros/cancer-tratamentos-naturais.jpeg",
+    imgPos: "center top",
   },
   {
     title: "Dieta Antidiabetes",
@@ -48,6 +53,8 @@ const courses: Course[] = [
     category: "Saúde",
     c1: "#6f9159",
     c2: "#2e5e3a",
+    img: "/livros/dieta-antidiabetes-o-estilo-de-vida-que-combate-a-diabetes.png",
+    imgPos: "center top",
   },
   {
     title: "Programa do Corpo Perfeito",
@@ -128,7 +135,12 @@ export default function CourseCatalog() {
           >
             <div className="course__thumb">
               {c.img && (
-                <img src={withBase(c.img)} alt={`Curso ${c.title}`} loading="lazy" />
+                <img
+                  src={withBase(c.img)}
+                  alt={`Curso ${c.title}`}
+                  loading="lazy"
+                  style={c.imgPos ? { objectPosition: c.imgPos } : undefined}
+                />
               )}
               <span className="course__level">{c.level}</span>
             </div>
