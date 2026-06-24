@@ -12,17 +12,21 @@ export const metadata: Metadata = {
     "Os 10 livros do Dr. Corassa: alimentação natural, jejum, dietas anticâncer e antidiabetes, receitas veganas e combos com desconto.",
 };
 
+// Loja de verdade (WooCommerce) na raiz do domínio. Capas e links extraídos
+// via _scripts/fetch-capas.mjs (campo `slug` = produto na raiz).
+const STORE = "https://saudefrugal.com.br/product";
+
 const books = [
-  { title: "A Dieta do Éden", tag: "Alimentação natural", c1: "#5a8a5a", c2: "#234d2e" },
-  { title: "Jejum Higienista", tag: "Jejum", c1: "#3f7a4c", c2: "#14271a" },
-  { title: "A Dieta Anticâncer", tag: "Prevenção", c1: "#4a7a4f", c2: "#1d4029" },
-  { title: "Dieta Antidiabetes", tag: "Saúde metabólica", c1: "#6f9159", c2: "#2e5e3a" },
-  { title: "Nutrição Vegana", tag: "Didático", c1: "#7e9a6e", c2: "#3e6a40" },
-  { title: "Vegan Fitness", tag: "Performance", c1: "#3a6a4a", c2: "#16301f" },
-  { title: "Doces Delícias", tag: "Receitas", c1: "#d08a4e", c2: "#7a3f1e" },
-  { title: "CRUlinária Frugal", tag: "Receitas cruas", c1: "#caa84a", c2: "#6f6320" },
-  { title: "Cozinhando sem o Fogão", tag: "Receitas", c1: "#c47b6a", c2: "#6a2f24" },
-  { title: "Veganismo para pais, mães e bebês", tag: "Família", c1: "#5b8aa0", c2: "#1f3d4a" },
+  { title: "A Dieta do Éden", tag: "Alimentação natural", slug: "dieta-do-eden", cover: "/livros/dieta-do-eden.jpg", c1: "#5a8a5a", c2: "#234d2e" },
+  { title: "Jejum Higienista", tag: "Jejum", slug: "jejum-higienista", cover: "/livros/jejum-higienista.jpeg", c1: "#3f7a4c", c2: "#14271a" },
+  { title: "A Dieta Anticâncer", tag: "Prevenção", slug: "cancer-tratamentos-naturais", cover: "/livros/cancer-tratamentos-naturais.jpeg", c1: "#4a7a4f", c2: "#1d4029" },
+  { title: "Dieta Antidiabetes", tag: "Saúde metabólica", slug: "dieta-antidiabetes-o-estilo-de-vida-que-combate-a-diabetes", cover: "/livros/dieta-antidiabetes-o-estilo-de-vida-que-combate-a-diabetes.png", c1: "#6f9159", c2: "#2e5e3a" },
+  { title: "Nutrição Vegana", tag: "Didático", slug: "nutricao-vegana", cover: "/livros/nutricao-vegana.jpg", c1: "#7e9a6e", c2: "#3e6a40" },
+  { title: "Vegan Fitness", tag: "Performance", slug: "vegan-fitness", cover: "/livros/vegan-fitness.jpg", c1: "#3a6a4a", c2: "#16301f" },
+  { title: "Doces Delícias", tag: "Receitas", slug: "doces-delicias", cover: "/livros/doces-delicias.jpg", c1: "#d08a4e", c2: "#7a3f1e" },
+  { title: "CRUlinária Frugal", tag: "Receitas cruas", slug: "crulinaria-frugal", cover: "/livros/crulinaria-frugal.jpg", c1: "#caa84a", c2: "#6f6320" },
+  { title: "Cozinhando sem o Fogão", tag: "Receitas", slug: "delicias-da-natureza-cozinhando-sem-o-fogao", cover: "/livros/delicias-da-natureza-cozinhando-sem-o-fogao.jpeg", c1: "#c47b6a", c2: "#6a2f24" },
+  { title: "Veganismo para pais, mães e bebês", tag: "Família", slug: "veganismo-para-os-pais", cover: "/livros/veganismo-para-os-pais.jpg", c1: "#5b8aa0", c2: "#1f3d4a" },
 ];
 
 const combos = [
@@ -30,18 +34,21 @@ const combos = [
     title: "Combo 4 livros de receitas",
     desc: "Doces Delícias, CRUlinária Frugal, Cozinhando sem o Fogão e mais — a cozinha natural completa.",
     price: "à vista ou parcelado",
+    slug: "livros-de-receitas-naturais",
     feature: false,
   },
   {
     title: "Combo 10 livros Dr. Corassa",
     desc: "A obra completa, do estilo de vida às receitas. A melhor relação custo-benefício da loja.",
     price: "melhor oferta",
+    slug: "combo-10-livros",
     feature: true,
   },
   {
     title: "Combo 6 livros didáticos",
     desc: "A base teórica e científica para entender a medicina do estilo de vida a fundo.",
     price: "à vista ou parcelado",
+    slug: "combo-6-livros-didaticos",
     feature: false,
   },
 ];
@@ -78,10 +85,21 @@ export default function LojaPage() {
                   className="book reveal"
                   style={{ ["--c1" as string]: b.c1, ["--c2" as string]: b.c2 }}
                 >
-                  <div className="book__cover">{b.title}</div>
+                  <div className="book__cover">
+                    {b.cover ? (
+                      <img src={withBase(b.cover)} alt={`Capa do livro ${b.title}`} loading="lazy" />
+                    ) : (
+                      b.title
+                    )}
+                  </div>
                   <h3>{b.title}</h3>
                   <span className="book__tag">{b.tag}</span>
-                  <a href="#" className="book__buy">
+                  <a
+                    href={`${STORE}/${b.slug}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="book__buy"
+                  >
                     Comprar <Arrow className="arrow" size={15} />
                   </a>
                 </article>
@@ -111,7 +129,9 @@ export default function LojaPage() {
                   <p>{c.desc}</p>
                   <div className="combo__price">{c.price}</div>
                   <a
-                    href="#"
+                    href={`${STORE}/${c.slug}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`btn ${c.feature ? "btn--light" : "btn--primary"}`}
                   >
                     Comprar combo <Arrow className="arrow" />
