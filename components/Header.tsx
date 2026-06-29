@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Leaf, Menu } from "./icons";
 import { withBase } from "@/lib/base";
+import { whatsappUrl } from "@/lib/site";
 
 const links = [
   { label: "Sobre", href: "/sobre" },
@@ -41,7 +42,12 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <a href={withBase("/#contato")} className="btn btn--primary">
+          <a
+            href={whatsappUrl("Olá! Gostaria de agendar uma consulta.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--primary"
+          >
             Agendar consulta
           </a>
           <button className="nav__toggle" aria-label="Abrir menu">

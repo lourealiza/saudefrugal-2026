@@ -5,6 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import CourseCatalog from "@/components/CourseCatalog";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { withBase } from "@/lib/base";
+import { whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cursos online · Dr. Eduardo Corassa — Saúde Frugal",
@@ -130,7 +131,7 @@ export default function CursosPage() {
                 o curso certo para o seu objetivo — sem compromisso.
               </p>
               <div className="actions">
-                <a href="https://wa.me/" className="btn btn--primary">
+                <a href={whatsappUrl()} className="btn btn--primary">
                   Falar no WhatsApp <Arrow className="arrow" />
                 </a>
                 <a href={withBase("/#caminhos")} className="btn btn--light">
@@ -145,7 +146,7 @@ export default function CursosPage() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

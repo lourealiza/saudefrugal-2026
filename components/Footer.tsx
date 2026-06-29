@@ -1,5 +1,6 @@
 import { Leaf, Instagram, Youtube, Spotify, Facebook } from "./icons";
 import { withBase } from "@/lib/base";
+import { social } from "@/lib/site";
 
 const cols = [
   {
@@ -9,7 +10,7 @@ const cols = [
       { label: "Retiros", href: "/retiros" },
       { label: "Livros", href: "/loja" },
       { label: "Blog", href: "#" },
-      { label: "YouTube", href: "https://www.youtube.com/@saudefrugal" },
+      { label: "YouTube", href: social.youtube },
     ],
   },
   {
@@ -47,16 +48,16 @@ export default function Footer() {
               hábitos que transformam o corpo de dentro para fora.
             </p>
             <div className="footer__social">
-              <a href="https://www.instagram.com/" aria-label="Instagram">
+              <a href={social.instagram} aria-label="Instagram">
                 <Instagram />
               </a>
-              <a href="https://www.youtube.com/@saudefrugal" aria-label="YouTube">
+              <a href={social.youtube} aria-label="YouTube">
                 <Youtube />
               </a>
-              <a href="https://open.spotify.com/" aria-label="Spotify">
+              <a href={social.spotify} aria-label="Spotify">
                 <Spotify />
               </a>
-              <a href="https://www.facebook.com/" aria-label="Facebook">
+              <a href={social.facebook} aria-label="Facebook">
                 <Facebook />
               </a>
             </div>

@@ -1,3 +1,5 @@
+import { social } from "@/lib/site";
+
 const videos = [
   "23 dias sem comer: o documentário do jejum",
   "O câncer e o remédio que a indústria esconde",
@@ -19,7 +21,7 @@ export default function Proof() {
           {videos.map((v) => (
             <a
               key={v}
-              href="https://www.youtube.com/@saudefrugal"
+              href={social.youtube}
               target="_blank"
               rel="noopener noreferrer"
               className="video reveal"
