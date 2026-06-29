@@ -25,7 +25,7 @@ export default function Home() {
 
       <a
         className="wa-float"
-        href="https://wa.me/"
+        href="https://wa.me/5521981928668"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"

@@ -1,8 +1,4 @@
-const videos = [
-  "23 dias sem comer: o documentário do jejum",
-  "O câncer e o remédio que a indústria esconde",
-  "40 dias de jejum de água: antes e depois",
-];
+const videoIds = ["i_tSMfCXGUs", "YdSayRXL2Rg", "bWOMJt3VWxg"];
 
 export default function Proof() {
   return (
@@ -16,17 +12,16 @@ export default function Proof() {
         </div>
 
         <div className="proof__grid">
-          {videos.map((v) => (
-            <a
-              key={v}
-              href="https://www.youtube.com/@saudefrugal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="video reveal"
-              aria-label={v}
-            >
-              <span>{v}</span>
-            </a>
+          {videoIds.map((id) => (
+            <div key={id} className="video-embed reveal">
+              <iframe
+                src={`https://www.youtube.com/embed/${id}`}
+                title="Vídeo do canal Saúde Frugal"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           ))}
         </div>
 

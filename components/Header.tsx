@@ -9,7 +9,7 @@ const links = [
   { label: "Cursos", href: "/cursos" },
   { label: "Retiros", href: "/retiros" },
   { label: "Livros", href: "/loja" },
-  { label: "Loja", href: "/loja" },
+  { label: "Blog", href: "/blog" },
   { label: "Contato", href: "/#contato" },
 ];
 
@@ -41,7 +41,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <a href={withBase("/#contato")} className="btn btn--primary">
+          <a href={withBase("/consulta")} className="btn btn--primary">
             Agendar consulta
           </a>
           <button className="nav__toggle" aria-label="Abrir menu">

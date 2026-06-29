@@ -13,9 +13,11 @@ export default function Feature() {
     <section className="section feature" id="retiro">
       <div className="wrap feature__grid">
         <div className="feature__media reveal">
-          {/* Substituir por foto do retiro: /public/retiro.jpg */}
           <span className="feature__tag">Detox · 5 a 10 dias</span>
-          imagem · retiro agroflorestal
+          <img
+            src={withBase("/cozinha-natural.webp")}
+            alt="Preparo de alimentos naturais — frutas e vegetais frescos sendo cortados"
+          />
         </div>
 
         <div className="reveal">
