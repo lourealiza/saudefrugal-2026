@@ -120,7 +120,10 @@ for (const [slug, pageSlug] of MAP) {
     console.log(`✗ ${slug}: página '${pageSlug}' não encontrada`);
     continue;
   }
-  const cleaned = polish(deElementorize(p.content?.rendered || ""));
+  // --polish remove sobras de loja; padrão = conteúdo COMPLETO/verbatim (inteiro).
+  const POLISH = process.argv.includes("--polish");
+  const base = deElementorize(p.content?.rendered || "");
+  const cleaned = POLISH ? polish(base) : base;
   writeFileSync(`content/livros/${slug}.html`, cleaned + "\n", "utf8");
   console.log(`✓ ${slug}: ${textLen(cleaned)} chars de texto (de page #${p.id})`);
   ok++;

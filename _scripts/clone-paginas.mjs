@@ -71,7 +71,16 @@ const ELEMENTOR_META = [
 
 async function req(url, opts) {
   const r = await fetch(url, opts);
-  return { ok: r.ok, status: r.status, json: await r.json().catch(() => null) };
+  const text = await r.text();
+  // Tolerante: alguns sites imprimem Notices de PHP antes do JSON (display_errors
+  // ligado). Recorta do 1º "{"/"[" até o último "}"/"]" e faz o parse disso.
+  let json = null;
+  const start = text.search(/[[{]/);
+  const end = Math.max(text.lastIndexOf("}"), text.lastIndexOf("]"));
+  if (start >= 0 && end > start) {
+    try { json = JSON.parse(text.slice(start, end + 1)); } catch {}
+  }
+  return { ok: r.ok, status: r.status, json };
 }
 const getRoot = (url) => req(url, { headers: { Authorization: AUTH_ROOT } });
 const get2026 = (url) => req(url, { headers: { Authorization: AUTH_2026 } });

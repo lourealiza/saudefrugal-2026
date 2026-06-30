@@ -37,3 +37,8 @@ next-env.d.ts
 /produtos-2026.json
 /preview-enriquecido.html
 /clone-paginas.log.json
+
+# artefatos locais (FTP/export)
+/SaudeFrugal2026.zip
+*.coreftp
+/product-export-*.csv
